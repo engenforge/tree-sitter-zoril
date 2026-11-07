@@ -1,0 +1,20 @@
+# Zoril Language Configuration for Helix Editor
+# Place or append to ~/.config/helix/languages.toml
+
+[[language]]
+name = "zoril"
+scope = "source.zoril"
+injection-regex = "zoril|zrl"
+file-types = ["zrl"]
+shebangs = []
+comment-tokens = ["//"]
+block-comment-tokens = [{ start = "/*", end = "*/" }]
+indent = { tab-width = 4, unit = "    " }
+auto-format = true
+grammar = "zoril"
+
+[[grammar]]
+name = "zoril"
+source = { git = "https://git.engenforge.com/tree-sitter-zoril.git", rev = "v0.1.0-alpha" }
+# Alternatively for local development:
+# source = { path = "/path/to/tree-sitter-zoril" }

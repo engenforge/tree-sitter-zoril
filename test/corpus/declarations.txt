@@ -1,0 +1,77 @@
+==================
+Function declaration
+==================
+
+fn add(a: i32, b: i32) -> i32 {
+    return a + b;
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    parameters: (parameter_list
+      (parameter
+        name: (identifier)
+        type: (primitive_type))
+      (parameter
+        name: (identifier)
+        type: (primitive_type)))
+    return_type: (primitive_type)
+    body: (block
+      (return_statement
+        value: (binary_expression
+          left: (identifier)
+          right: (identifier))))))
+
+==================
+Struct declaration
+==================
+
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+---
+
+(source_file
+  (struct_declaration
+    name: (type_identifier
+      (identifier))
+    body: (field_declaration_list
+      (field_declaration
+        name: (identifier)
+        type: (primitive_type))
+      (field_declaration
+        name: (identifier)
+        type: (primitive_type)))))
+
+==================
+Enum declaration
+==================
+
+enum Option<T> {
+    None,
+    Some(T),
+}
+
+---
+
+(source_file
+  (enum_declaration
+    name: (type_identifier
+      (identifier))
+    type_parameters: (type_parameters
+      (type_parameter
+        name: (type_identifier
+          (identifier))))
+    body: (enum_variant_list
+      (enum_variant
+        name: (identifier))
+      (enum_variant
+        name: (identifier)
+        parameters: (tuple_type
+          (type_identifier
+            (identifier)))))))

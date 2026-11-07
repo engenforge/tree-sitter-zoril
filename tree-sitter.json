@@ -1,0 +1,17 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "zoril",
+      "camelcase": "Zoril",
+      "title": "Zoril",
+      "scope": "source.zoril",
+      "file-types": ["zrl"],
+      "injection-regex": "^(zoril|zrl)$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0-alpha",
+    "license": "MIT"
+  }
+}

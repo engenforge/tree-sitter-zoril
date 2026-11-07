@@ -1,0 +1,51 @@
+==================
+Slice and Array types
+==================
+
+fn test_slices(read_only: [u8], mutable: [mut u8], arr: [i32; 10]) {
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    parameters: (parameter_list
+      (parameter
+        name: (identifier)
+        type: (slice_type
+          element: (primitive_type)))
+      (parameter
+        name: (identifier)
+        type: (slice_type
+          element: (primitive_type)))
+      (parameter
+        name: (identifier)
+        type: (array_type
+          element: (primitive_type)
+          length: (integer_literal))))
+    body: (block)))
+
+==================
+Linear resource types
+==================
+
+fn test_linear(reader: fd<r>, writer: fd<w>, ring: async_context) {
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    parameters: (parameter_list
+      (parameter
+        name: (identifier)
+        type: (linear_type))
+      (parameter
+        name: (identifier)
+        type: (linear_type))
+      (parameter
+        name: (identifier)
+        type: (linear_type)))
+    body: (block)))

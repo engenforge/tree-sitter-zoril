@@ -1,0 +1,110 @@
+==================
+Match and Enums
+==================
+
+fn test_match(c: Color) -> i32 {
+    return match c {
+        Color.Red => 1,
+        Color.Custom(v) => v,
+        _ => 0,
+    };
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    parameters: (parameter_list
+      (parameter
+        name: (identifier)
+        type: (type_identifier
+          (identifier))))
+    return_type: (primitive_type)
+    body: (block
+      (return_statement
+        value: (match_expression
+          value: (identifier)
+          body: (match_block
+            (match_arm
+              pattern: (enum_variant_pattern
+                (type_identifier
+                  (identifier))
+                variant: (identifier))
+              value: (integer_literal))
+            (match_arm
+              pattern: (enum_variant_pattern
+                (type_identifier
+                  (identifier))
+                variant: (identifier)
+                payload: (identifier))
+              value: (identifier))
+            (match_arm
+              pattern: (wildcard_pattern)
+              value: (integer_literal))))))))
+
+==================
+Annotations and Syscall
+==================
+
+fn sys_exit(code: u64) {
+    unsafe { @syscall(60, code) };
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    parameters: (parameter_list
+      (parameter
+        name: (identifier)
+        type: (primitive_type)))
+    body: (block
+      (expression_statement
+        (unsafe_block
+          body: (block
+            (annotation_expression
+              name: (identifier)
+              arguments: (argument_list
+                (integer_literal)
+                (identifier)))))))))
+
+==================
+Closure expression
+==================
+
+fn test_closure() {
+    let add = |x: i32, y: i32| -> i32 { x + y };
+    let double = |x| x * 2;
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    parameters: (parameter_list)
+    body: (block
+      (let_statement
+        pattern: (identifier)
+        value: (closure_expression
+          (closure_parameter
+            name: (identifier)
+            type: (primitive_type))
+          (closure_parameter
+            name: (identifier)
+            type: (primitive_type))
+          return_type: (primitive_type)
+          body: (block
+            (binary_expression
+              left: (identifier)
+              right: (identifier)))))
+      (let_statement
+        pattern: (identifier)
+        value: (closure_expression
+          (closure_parameter
+            name: (identifier))
+          body: (binary_expression
+            left: (identifier)
+            right: (integer_literal)))))))
